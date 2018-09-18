@@ -1,7 +1,7 @@
 WORKDIR=/tmp
 WORKFILE=$WORKDIR/.work
 
-cat <<'EOF' > $WORKDIR/$APP_NAME/files/temp.sh
+cat <<'EOF' > $WORKDIR/$APP_NAME/temp.sh
 
 echo "curl -s -d ' {\""auth\"":null,\""method\"":\""user.login\"",\""id\"":1,\""params\"":{\""password\"":\""`echo $JENKINS_INJECTS_ZABBIX_USER_PASSWORD`\"",\""user\"":\""`echo $JENKINS_INJECTS_ZABBIX_USER_NAME`\""},\""jsonrpc\"":\""2.0\""}' -H \""Content-Type: application/json-rpc\"" http://da-zabbix2.scaleout.local/zabbix/api_jsonrpc.php" | sh | jq -r '.result' > $WORKDIR/.token && token=`cat $WORKDIR/.token`
 echo "curl -s -d ' {\""auth\"":\""`echo $token`\"",\""method\"":\""trigger.get\"",\""id\"":1,\""params\"":{\""output\"":\""extend\"",  \""expandDescription\"":1,  \""monitored\"":1,  \""filter\"":{\""status\"":0,\""value\"":1} },\""jsonrpc\"":\""2.0\""} ' -H \""Content-Type: application/json-rpc\"" http://$JENKINS_INJECTS_ZABBIX_HOST/zabbix/api_jsonrpc.php" | sh |  jq -r '.result[].description' | sort | nl
