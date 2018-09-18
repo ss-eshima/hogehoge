@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: $APP_NAME
+  name: ___APP_NAME___
 spec:
   #schedule: "*/2 * * * *"
   schedule: "15 3 * * 1-5"
@@ -12,6 +12,6 @@ spec:
       template:
         spec:
           containers:
-          - name: $APP_NAME
-            image: $REGISTRY_URL/zabbix/$APP_NAME
+          - name: ___APP_NAME___
+            image: ___DOCKER_REGISTRY_URL___/___DOCKER_REGISTRY_NAMESPACE___/___APP_NAME___:___APP_TAG___
           restartPolicy: OnFailure
