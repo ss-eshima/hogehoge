@@ -1,0 +1,17 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: $APP_NAME
+spec:
+  #schedule: "*/2 * * * *"
+  schedule: "15 3 * * 1-5"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: $APP_NAME
+            image: $REGISTRY_URL/zabbix/$APP_NAME
+          restartPolicy: OnFailure
