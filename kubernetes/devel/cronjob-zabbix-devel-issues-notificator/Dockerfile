@@ -3,5 +3,5 @@ RUN apk update \
  && apk add jq \
  && apk add curl \
  && rm -rf /var/cache/apk/*
-ADD files /tmp
+ADD ./ /tmp
 CMD ["sh", "/tmp/execute.sh"]
