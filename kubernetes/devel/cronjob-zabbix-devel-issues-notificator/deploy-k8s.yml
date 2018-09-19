@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: ___APP_NAME___
+  name: ___APP_NAME_SET_BY_JENKINS___
 spec:
   #schedule: "*/2 * * * *"
   schedule: "15 3 * * 1-5"
@@ -12,6 +12,6 @@ spec:
       template:
         spec:
           containers:
-          - name: ___APP_NAME___
-            image: ___DOCKER_REGISTRY_URL___/___DOCKER_REGISTRY_NAMESPACE___/___APP_NAME___:___APP_TAG___
+          - name: ___APP_NAME_SET_BY_JENKINS___
+            image: ___DOCKER_REGISTRY_URL_SET_BY_JENKINS___/___DOCKER_REGISTRY_NAMESPACE_SET_BY_JENKINS___/___APP_NAME_SET_BY_JENKINS___:___APP_TAG_SET_BY_JENKINS___
           restartPolicy: OnFailure
