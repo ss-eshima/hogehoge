@@ -1,7 +1,3 @@
-#cat <<'EOF' $CONTAINER_WORKDIR_SET_BY_JENKINS/$APP_NAME_SET_BY_JENKINS/main.sh
-#cat <<'EOF' > $CONTAINER_WORKDIR_SET_BY_JENKINS//main.sh
-
-
 CONTAINER_WORKFILE=$CONTAINER_WORKDIR_SET_BY_JENKINS/$CONTAINER_WORKFILE_SET_BY_JENKINS
 
 echo "curl -s -d ' {\""auth\"":null,\""method\"":\""user.login\"",\""id\"":1,\""params\"":{\""password\"":\""`echo $ZABBIX_USER_PASSWORD_SET_BY_JENKINS`\"",\""user\"":\""`echo $ZABBIX_USER_NAME_SET_BY_JENKINS`\""},\""jsonrpc\"":\""2.0\""}' -H \""Content-Type: application/json-rpc\"" http://$ZABBIX_API_HOST_SET_BY_JENKINS/zabbix/api_jsonrpc.php" | sh | jq -r '.result' > $CONTAINER_WORKDIR_SET_BY_JENKINS/.token && token=`cat $CONTAINER_WORKDIR_SET_BY_JENKINS/.token`
@@ -16,4 +12,3 @@ go run $CONTAINER_WORKDIR_SET_BY_JENKINS/slack-notify.go \
 -u "$SLACK_USER_SET_BY_JENKINS" \
 -r "$SLACK_ROOM_SET_BY_JENKINS" \
 -d "$SLACK_URL_SET_BY_JENKINS"
-#EOF
