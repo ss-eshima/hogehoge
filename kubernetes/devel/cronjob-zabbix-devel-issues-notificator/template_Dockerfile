@@ -4,4 +4,4 @@ RUN apk update \
  && apk add curl \
  && rm -rf /var/cache/apk/*
 ADD ./ ___CONTAINER_WORKDIR_SET_BY_JENKINS___
-CMD ["sh", "___CONTAINER_WORKDIR_SET_BY_JENKINS___/execute.sh"]
+CMD ["sh", "___CONTAINER_WORKDIR_SET_BY_JENKINS___/main.sh"]
